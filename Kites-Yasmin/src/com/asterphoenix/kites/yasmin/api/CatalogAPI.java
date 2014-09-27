@@ -1,4 +1,4 @@
-package com.asterphoenix.kites.yasmin;
+package com.asterphoenix.kites.yasmin.api;
 
 import java.util.List;
 

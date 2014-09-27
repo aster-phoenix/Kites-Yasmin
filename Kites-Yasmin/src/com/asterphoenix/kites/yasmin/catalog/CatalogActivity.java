@@ -1,4 +1,4 @@
-package com.asterphoenix.kites.yasmin;
+package com.asterphoenix.kites.yasmin.catalog;
 
 import java.util.List;
 
@@ -19,6 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asterphoenix.kites.model.Category;
+import com.asterphoenix.kites.yasmin.R;
+import com.asterphoenix.kites.yasmin.R.id;
+import com.asterphoenix.kites.yasmin.R.layout;
+import com.asterphoenix.kites.yasmin.R.menu;
+import com.asterphoenix.kites.yasmin.api.CatalogAPI;
 
 public class CatalogActivity extends ListActivity {
 

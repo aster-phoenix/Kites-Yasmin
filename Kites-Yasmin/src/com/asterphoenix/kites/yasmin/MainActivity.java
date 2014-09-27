@@ -1,5 +1,7 @@
 package com.asterphoenix.kites.yasmin;
 
+import com.asterphoenix.kites.yasmin.catalog.CatalogActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
