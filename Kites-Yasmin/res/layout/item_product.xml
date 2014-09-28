@@ -6,30 +6,30 @@
     android:alpha="0.5" >
     
     <ImageView
-        android:id="@+id/categoryImage"
+        android:id="@+id/productImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:contentDescription="@string/category_name_placeholder"/>
+        android:contentDescription="@string/product_name_placeholder"/>
 
     <TextView
-        android:id="@+id/categoryName"
+        android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/categoryImage"
-        android:layout_toRightOf="@+id/categoryImage"
-        android:text="@string/category_name_placeholder"
+        android:layout_alignTop="@+id/productImage"
+        android:layout_toRightOf="@+id/productImage"
+        android:text="@string/product_name_placeholder"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/categoryDesc"
+        android:id="@+id/productDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/categoryName"
-        android:layout_below="@+id/categoryName"
-        android:text="@string/category_name_placeholder" />
+        android:layout_alignLeft="@+id/productName"
+        android:layout_below="@+id/productName"
+        android:text="@string/product_name_placeholder" />
 
 </RelativeLayout>

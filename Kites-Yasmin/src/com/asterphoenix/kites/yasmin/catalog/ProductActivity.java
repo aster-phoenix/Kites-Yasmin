@@ -8,35 +8,35 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.asterphoenix.kites.model.Category;
+import com.asterphoenix.kites.model.Product;
 import com.asterphoenix.kites.yasmin.R;
 import com.asterphoenix.kites.yasmin.api.CatalogAPI;
 
-public class CatalogActivity extends ListActivity {
+public class ProductActivity extends ListActivity {
 
 	public static final String ENDPOINT = "http://192.168.137.1:8080/Kites-Alice";
 	private ProgressBar pb;
+	private String categoryName;
 
-	private List<Category> categoryList;
+	private List<Product> productList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		categoryName = getIntent().getExtras().getString("categoryName");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		setContentView(R.layout.activity_catalog);
+		setContentView(R.layout.activity_products);
 
-		pb = (ProgressBar) findViewById(R.id.categoryPB);
+		pb = (ProgressBar) findViewById(R.id.productPB);
 		pb.setVisibility(View.INVISIBLE);
 
 		if (isOnline()) {
@@ -60,33 +60,24 @@ public class CatalogActivity extends ListActivity {
 		}
 		return false;
 	}
-	
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-//		super.onListItemClick(l, v, position, id);
-		String categoryName = categoryList.get(position).getCategoryName();
-		Intent intent = new Intent(CatalogActivity.this, ProductActivity.class);
-		intent.putExtra("categoryName", categoryName);
-		startActivity(intent);
-	}
 
 	protected void requestData() {
 
 		pb.setVisibility(View.VISIBLE);
 		RestAdapter adapter = new RestAdapter.Builder().setEndpoint(ENDPOINT).build();
 		CatalogAPI api = adapter.create(CatalogAPI.class);
-		api.getCatalog(new Callback<List<Category>>() {
+		api.getProductsByCategory(categoryName, new Callback<List<Product>>() {
 
 			@Override
-			public void success(List<Category> arg0, Response arg1) {
-				categoryList = arg0;
+			public void success(List<Product> arg0, Response arg1) {
+				productList = arg0;
 				updateDisplay();
 				pb.setVisibility(View.INVISIBLE);
 			}
 
 			@Override
 			public void failure(RetrofitError arg0) {
-				Toast.makeText(CatalogActivity.this, "Network error", Toast.LENGTH_LONG).show();
+				Toast.makeText(ProductActivity.this, "Network error", Toast.LENGTH_LONG).show();
 				pb.setVisibility(View.INVISIBLE);
 			}
 		});
@@ -94,7 +85,7 @@ public class CatalogActivity extends ListActivity {
 	}
 
 	protected void updateDisplay() {
-		CatalogAdapter adapter = new CatalogAdapter(this, R.layout.item_category, categoryList);
+		ProductAdapter adapter = new ProductAdapter(this, R.layout.item_product, productList);
 		setListAdapter(adapter);
 	}
 

@@ -1,7 +1,5 @@
 package com.asterphoenix.kites.yasmin;
 
-import com.asterphoenix.kites.yasmin.catalog.CatalogActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.asterphoenix.kites.yasmin.catalog.CatalogActivity;
+
 public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 	}
 
 	@Override
@@ -25,15 +26,11 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		return false;
 	}
 	
-	public void onBegin(View v) {
-		Intent intent = new Intent(this, CatalogActivity.class);
+	public void onStartButtonClicked(View v) {
+		Intent intent = new Intent(MainActivity.this, CatalogActivity.class);
 		startActivity(intent);
 	}
 }
