@@ -29,11 +29,10 @@
             android:name="com.asterphoenix.kites.yasmin.catalog.CatalogActivity"
             android:label="@string/title_activity_catalog"
             android:parentActivityName="com.asterphoenix.kites.yasmin.MainActivity" />
-        <activity
+        <activity 
             android:name="com.asterphoenix.kites.yasmin.catalog.ProductActivity"
             android:label="@string/title_activity_product"
             android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" />
-        
     </application>
 
 </manifest>

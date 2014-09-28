@@ -14,10 +14,10 @@ public interface CatalogAPI {
 	@GET("/api/json/catalog")
 	public void getCatalog(Callback<List<Category>> response);
 	
-	@GET("/api/json/catalog/products/byname/{productName}")
-	public void getProductsByName(@Path("productName") String productName, Callback<List<Product>> response);
+	@GET("/api/json/catalog/products/bycatalog/{categoryName}")
+	public void getProductsByCategory(@Path("categoryName") String categoryName, Callback<List<Product>> response);
 	
-	@GET("/api/json/catalog/products/bycatalog/{catalogName}")
-	public void getProductsByCategory(@Path("catalogName") String categoryName, Callback<List<Product>> response);
+	@GET("/api/json/catalog/products/byname/{productName}")
+	public void getProductsByName(@Path("productName") String categoryName, Callback<List<Product>> response);
 
 }

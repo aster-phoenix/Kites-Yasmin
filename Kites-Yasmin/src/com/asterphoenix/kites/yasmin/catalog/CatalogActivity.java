@@ -63,7 +63,6 @@ public class CatalogActivity extends ListActivity {
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-//		super.onListItemClick(l, v, position, id);
 		String categoryName = categoryList.get(position).getCategoryName();
 		Intent intent = new Intent(CatalogActivity.this, ProductActivity.class);
 		intent.putExtra("categoryName", categoryName);

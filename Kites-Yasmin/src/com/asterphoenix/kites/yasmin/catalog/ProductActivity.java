@@ -32,9 +32,10 @@ public class ProductActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		categoryName = getIntent().getExtras().getString("categoryName");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		setContentView(R.layout.activity_products);
+		setContentView(R.layout.activity_product);
+		
+		categoryName = getIntent().getExtras().getString("categoryName");
 
 		pb = (ProgressBar) findViewById(R.id.productPB);
 		pb.setVisibility(View.INVISIBLE);
@@ -55,9 +56,6 @@ public class ProductActivity extends ListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_exit) {
-			return true;
-		}
 		return false;
 	}
 
@@ -77,7 +75,7 @@ public class ProductActivity extends ListActivity {
 
 			@Override
 			public void failure(RetrofitError arg0) {
-				Toast.makeText(ProductActivity.this, "Network error", Toast.LENGTH_LONG).show();
+				Toast.makeText(ProductActivity.this, "Network error" + arg0.getMessage(), Toast.LENGTH_LONG).show();
 				pb.setVisibility(View.INVISIBLE);
 			}
 		});

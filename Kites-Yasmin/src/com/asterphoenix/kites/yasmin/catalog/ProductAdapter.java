@@ -2,6 +2,10 @@ package com.asterphoenix.kites.yasmin.catalog;
 
 import java.util.List;
 
+import com.asterphoenix.kites.model.Category;
+import com.asterphoenix.kites.model.Product;
+import com.asterphoenix.kites.yasmin.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import com.asterphoenix.kites.model.Product;
-import com.asterphoenix.kites.yasmin.R;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 	
@@ -37,12 +38,14 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 				(LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.item_product, parent, false);
 
+		//Display flower name in the TextView widget
 		Product product = productList.get(position);
 		TextView tv = (TextView) view.findViewById(R.id.productName);
 		tv.setText(product.getProductName());
 		tv = (TextView) view.findViewById(R.id.productDesc);
 		tv.setText(product.getProductDescription());
 
+		//Display flower photo in ImageView widget
 //		Bitmap bitmap = imageCache.get((int) category.getCategoryID());
 //		if (bitmap != null) {
 //			ImageView image = (ImageView) view.findViewById(R.id.imageView1);
@@ -98,5 +101,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 //		}
 //
 //	}
+
 
 }
