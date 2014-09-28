@@ -2,6 +2,10 @@ package com.asterphoenix.kites.yasmin.catalog;
 
 import java.util.List;
 
+import com.asterphoenix.kites.model.Category;
+import com.asterphoenix.kites.model.Product;
+import com.asterphoenix.kites.yasmin.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,22 +14,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.asterphoenix.kites.model.Category;
-import com.asterphoenix.kites.yasmin.R;
-import com.asterphoenix.kites.yasmin.R.id;
-import com.asterphoenix.kites.yasmin.R.layout;
-
-public class CatalogAdapter extends ArrayAdapter<Category> {
+public class ProductAdapter extends ArrayAdapter<Product> {
 	
 	private Context context;
-	private List<Category> categoryList;
+	private List<Product> productList;
 	
 //	private LruCache<Integer, Bitmap> imageCache;
 
-	public CatalogAdapter(Context context, int resource, List<Category> objects) {
+	public ProductAdapter(Context context, int resource, List<Product> objects) {
 		super(context, resource, objects);
 		this.context = context;
-		this.categoryList = objects;
+		this.productList = objects;
 		
 //		final int maxMemory = (int)(Runtime.getRuntime().maxMemory() /1024);
 //		final int cacheSize = maxMemory / 8;
@@ -37,14 +36,14 @@ public class CatalogAdapter extends ArrayAdapter<Category> {
 
 		LayoutInflater inflater = 
 				(LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.item_category, parent, false);
+		View view = inflater.inflate(R.layout.item_product, parent, false);
 
 		//Display flower name in the TextView widget
-		Category category = categoryList.get(position);
-		TextView tv = (TextView) view.findViewById(R.id.categoryName);
-		tv.setText(category.getCategoryName());
-		tv = (TextView) view.findViewById(R.id.categoryDesc);
-		tv.setText(category.getCategoryDescription());
+		Product product = productList.get(position);
+		TextView tv = (TextView) view.findViewById(R.id.productName);
+		tv.setText(product.getProductName());
+		tv = (TextView) view.findViewById(R.id.productDesc);
+		tv.setText(product.getProductDescription());
 
 		//Display flower photo in ImageView widget
 //		Bitmap bitmap = imageCache.get((int) category.getCategoryID());
@@ -102,5 +101,6 @@ public class CatalogAdapter extends ArrayAdapter<Category> {
 //		}
 //
 //	}
+
 
 }

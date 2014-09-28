@@ -11,11 +11,10 @@
     </ListView>
 
     <ProgressBar
-        android:id="@+id/categoryPB"
+        android:id="@+id/productPB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="invisible" />
-    
 
 </RelativeLayout>
