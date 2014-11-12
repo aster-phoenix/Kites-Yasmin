@@ -4,11 +4,16 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asterphoenix.kites.model.Category;
 import com.asterphoenix.kites.yasmin.R;
@@ -42,61 +47,17 @@ public class CatalogAdapter extends ArrayAdapter<Category> {
 		tv.setText(category.getCategoryName());
 		tv = (TextView) view.findViewById(R.id.categoryDesc);
 		tv.setText(category.getCategoryDescription());
-
-//		Bitmap bitmap = imageCache.get((int) category.getCategoryID());
-//		if (bitmap != null) {
-//			ImageView image = (ImageView) view.findViewById(R.id.imageView1);
-//			image.setImageBitmap(category.getBitmap());
-//		}
-//		else {
-//			CategoryAndView container = new CategoryAndView();
-//			container.category = category;
-//			container.view = view;
-//			
-//			ImageLoader loader = new ImageLoader();
-//			loader.execute(container);
-//		}
-
+		if (category.getImageBytes() != null) {
+			try {
+				ImageView iv = (ImageView) view.findViewById(R.id.categoryImage);
+				byte[] bytes = Base64.decode(category.getImageBytes(), Base64.DEFAULT);
+				iv.setImageBitmap(BitmapFactory.decodeByteArray(bytes,0, bytes.length));
+			} catch (Exception e) {
+				Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+				Log.d("Cat", e.getMessage());
+			}
+		}
 		return view;
 	}
-
-//	class CategoryAndView {
-//		public Category category;
-//		public View view;
-//		public Bitmap bitmap;
-//	}
-//
-//	private class ImageLoader extends AsyncTask<CategoryAndView, Void, CategoryAndView> {
-//
-//		@Override
-//		protected CategoryAndView doInBackground(CategoryAndView... params) {
-//
-//			CategoryAndView container = params[0];
-//			Category flower = container.category;
-//
-//			try {
-//				String imageUrl = "" + Category.getPhoto();
-//				InputStream in = (InputStream) new URL(imageUrl).getContent();
-//				Bitmap bitmap = BitmapFactory.decodeStream(in);
-//				cat.setBitmap(bitmap);
-//				in.close();
-//				container.bitmap = bitmap;
-//				return container;
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//
-//			return null;
-//		}
-//		
-//		@Override
-//		protected void onPostExecute(CategoryAndView result) {
-//			ImageView image = (ImageView) result.view.findViewById(R.id.imageView1);
-//			image.setImageBitmap(result.bitmap);
-////			result.flower.setBitmap(result.bitmap);
-//			imageCache.put(result.flower.getProductId(), result.bitmap);
-//		}
-//
-//	}
 
 }

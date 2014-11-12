@@ -1,18 +1,18 @@
 package com.asterphoenix.kites.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Order {
+public class Order implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long orderID;
-	private Customer customer;
-//	private LocalDateTime timeStamp;
-	private int totalPrice;
+	private float totalPrice;
 	private OrderStatus orderStatus;
 	private Set<OrderItem> orders;
 
-	public enum OrderStatus {
-		New, Completed, Rejected
+	public enum OrderStatus  {
+		New, Completed, Verified, Rejected
 	}
 	
 	public long getOrderID() {
@@ -23,27 +23,11 @@ public class Order {
 		this.orderID = orderID;
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-//	public LocalDateTime getTimeStamp() {
-//		return timeStamp;
-//	}
-//
-//	public void setTimeStamp(LocalDateTime timeStamp) {
-//		this.timeStamp = timeStamp;
-//	}
-
-	public int getTotalPrice() {
+	public float getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(int totalPrice) {
+	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
@@ -62,8 +46,5 @@ public class Order {
 	public void setOrders(Set<OrderItem> orders) {
 		this.orders = orders;
 	}
-	
-	//add one Single order method
-
 }
 

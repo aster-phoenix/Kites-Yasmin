@@ -18,6 +18,9 @@ public interface CatalogAPI {
 	public void getProductsByCategory(@Path("categoryName") String categoryName, Callback<List<Product>> response);
 	
 	@GET("/api/json/catalog/products/byname/{productName}")
-	public void getProductsByName(@Path("productName") String categoryName, Callback<List<Product>> response);
+	public void getProductsByName(@Path("productName") String productName, Callback<List<Product>> response);
+	
+	@GET("/api/json/catalog/products/byid/{productID}")
+	public void getProductsByID(@Path("productID") String productID, Callback<Product> response);
 
 }

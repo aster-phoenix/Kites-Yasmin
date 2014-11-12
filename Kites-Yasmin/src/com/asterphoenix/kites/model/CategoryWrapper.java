@@ -1,25 +1,28 @@
 package com.asterphoenix.kites.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class CategoryWrapper extends ArrayList<Category> {
+public class CategoryWrapper {
+	
+	List<Category> category;
 	
 	public CategoryWrapper() {
-		super();
+//		super();
 	}
 	
-	public CategoryWrapper(Collection<? extends Category> c) {
-		super(c);
+	public CategoryWrapper(List<Category> c) {
+//		super(c);
+		category = c;
 	}
 	
 	public List<Category> getCategoy() {
-		return this;
+//		return this;
+		return category;
 	}
 
 	public void setCategoy(List<Category> c) {
-		this.addAll(c);
+//		this.addAll(c);
+		category.addAll(c);
 	}
 
 }

@@ -8,6 +8,7 @@ public class Category {
 	private String categoryName;
 	private String categoryDescription;
 	private Set<Product> products;
+	private String imageBytes;
 	
 	public long getCategoryID() {
 		return categoryID;
@@ -32,6 +33,12 @@ public class Category {
 	}
 	public void setProducts(Set<Product> products) {
 		this.products = products;
+	}
+	public String getImageBytes() {
+		return imageBytes;
+	}
+	public void setImageBytes(String imageBytes) {
+		this.imageBytes = imageBytes;
 	}
 
 }

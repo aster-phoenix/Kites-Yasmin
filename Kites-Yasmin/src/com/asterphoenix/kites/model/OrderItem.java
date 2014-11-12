@@ -1,13 +1,13 @@
 package com.asterphoenix.kites.model;
 
+import java.io.Serializable;
 
-public class OrderItem {
+public class OrderItem implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long singleOrderID;
-	private Product product;
-	private int qty;
-	private int price;
-	private Order order;
+	private long productID;
+	private float qty;
 	
 	public long getSingleOrderID() {
 		return singleOrderID;
@@ -15,29 +15,17 @@ public class OrderItem {
 	public void setSingleOrderID(long singleOrderID) {
 		this.singleOrderID = singleOrderID;
 	}
-	public Product getProduct() {
-		return product;
+	public long getProductID() {
+		return productID;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductID(long productID) {
+		this.productID = productID;
 	}
-	public int getQty() {
+	public float getQty() {
 		return qty;
 	}
-	public void setQty(int qty) {
+	public void setQty(float qty) {
 		this.qty = qty;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
 	}
 	
 }

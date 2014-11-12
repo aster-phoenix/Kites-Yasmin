@@ -85,7 +85,7 @@ public class CatalogActivity extends ListActivity {
 
 			@Override
 			public void failure(RetrofitError arg0) {
-				Toast.makeText(CatalogActivity.this, "Network error", Toast.LENGTH_LONG).show();
+				Toast.makeText(CatalogActivity.this, arg0.getMessage(), Toast.LENGTH_LONG).show();
 				pb.setVisibility(View.INVISIBLE);
 			}
 		});

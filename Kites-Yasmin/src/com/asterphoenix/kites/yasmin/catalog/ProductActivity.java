@@ -8,12 +8,14 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -23,7 +25,6 @@ import com.asterphoenix.kites.yasmin.api.CatalogAPI;
 
 public class ProductActivity extends ListActivity {
 
-	public static final String ENDPOINT = "http://192.168.137.1:8080/Kites-Alice";
 	private ProgressBar pb;
 	private String categoryName;
 
@@ -58,11 +59,19 @@ public class ProductActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		return false;
 	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		long productID = productList.get(position).getProductID();
+		Intent intent = new Intent(ProductActivity.this, ProductDetailActivity.class);
+		intent.putExtra("productID", productID);
+		startActivity(intent);
+	}
 
 	protected void requestData() {
 
 		pb.setVisibility(View.VISIBLE);
-		RestAdapter adapter = new RestAdapter.Builder().setEndpoint(ENDPOINT).build();
+		RestAdapter adapter = new RestAdapter.Builder().setEndpoint(CatalogActivity.ENDPOINT).build();
 		CatalogAPI api = adapter.create(CatalogAPI.class);
 		api.getProductsByCategory(categoryName, new Callback<List<Product>>() {
 
