@@ -1,7 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:alpha="0.5"
+    android:background="#fff" >
+
+    <ImageView
+        android:id="@+id/cartProductImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/product_name_placeholder" />
+
+    <TextView
+        android:id="@+id/cartProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cartProductImage"
+        android:layout_toRightOf="@+id/cartProductImage"
+        android:paddingLeft="20dp"
+        android:text="@string/product_name_placeholder"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/cartProductDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cartProductName"
+        android:layout_below="@+id/cartProductName"
+        android:paddingLeft="20dp"
+        android:text="@string/product_name_placeholder" />
+
+    <TextView
+        android:id="@+id/cartProductQTYLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cartProductDesc"
+        android:layout_below="@+id/cartProductDesc"
+        android:paddingLeft="20dp"
+        android:text="Quantity"
+        android:textColor="#950" />
+
+    <TextView
+        android:id="@+id/cartProductQTY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cartProductDesc"
+        android:layout_toRightOf="@+id/cartProductQTYLabel"
+        android:text="###" />
     
+    <TextView
+        android:id="@+id/cartProductPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cartProductQTYLabel"
+        android:layout_alignLeft="@+id/cartProductQTYLabel"
+        android:paddingLeft="20dp"
+        android:text="Price"
+        android:textColor="#950" />
+    
+    <TextView
+        android:id="@+id/cartProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cartProductQTY"
+        android:layout_toRightOf="@+id/cartProductPriceLabel"
+        android:text="###" />
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:alpha="0.7"
+        android:background="#aaa"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/button2"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button1"
+        android:alpha="0.7"
+        android:background="#aaa"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/button3"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/cartProductImage"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button2"
+        android:alpha="0.7"
+        android:background="#f00"
+        android:text="X" />
 
 </RelativeLayout>

@@ -22,5 +22,5 @@ public interface CatalogAPI {
 	
 	@GET("/api/json/catalog/products/byid/{productID}")
 	public void getProductsByID(@Path("productID") String productID, Callback<Product> response);
-
+	
 }

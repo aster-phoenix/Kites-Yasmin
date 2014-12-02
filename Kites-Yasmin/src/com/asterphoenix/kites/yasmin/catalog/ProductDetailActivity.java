@@ -6,16 +6,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Set;
-
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -25,7 +26,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.asterphoenix.kites.model.Order;
 import com.asterphoenix.kites.model.Order.OrderStatus;
 import com.asterphoenix.kites.model.OrderItem;
@@ -118,6 +118,7 @@ public class ProductDetailActivity extends Activity {
 		}
 	}
 	
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	public void addToCart(View v) {
 		Order order = readOrder();
 		TextView tv = (TextView) findViewById(R.id.detailProductQTY);
@@ -136,6 +137,7 @@ public class ProductDetailActivity extends Activity {
 		order.setTotalPrice(order.getTotalPrice() + totalPrice);
 		if (writeOrder(order)) {
 			Toast.makeText(this, "Item added to cart", Toast.LENGTH_LONG).show();
+			this.navigateUpTo(this.getParentActivityIntent());
 		}
 	}
 	

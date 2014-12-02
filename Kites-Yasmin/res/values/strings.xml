@@ -11,11 +11,13 @@
     <string name="text_welcome">\nKites Open Source Shopping Cart Client</string>
     <string name="text_start">Start</string>
     <string name="text_add_to_cart">Add to cart</string>
+    <string name="text_checkout">Checkout</string>
     <string name="category_name_placeholder">Category name</string>
     <string name="product_name_placeholder">Product name:</string>
     <string name="product_description_placeholder">Product description:</string>
     <string name="product_brand_placeholder">Product brand:</string>
     <string name="product_price_placeholder">Product price:</string>
     <string name="product_tprice_placeholder">Quantity and Total price:</string>
+    <string name="product_tprice_placeholder2">Total price:</string>
 
 </resources>
