@@ -17,6 +17,6 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/cart_icon"
-        android:title="cart"/>
+        android:title="cart" />
 
 </menu>

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.asterphoenix.kites.yasmin.cart.CartActivity;
 import com.asterphoenix.kites.yasmin.catalog.CatalogActivity;
 
 public class MainActivity extends Activity {
@@ -26,6 +27,11 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getTitle().equals("cart")) {
+			Intent intent = new Intent(MainActivity.this, CartActivity.class);
+			startActivity(intent);
+			return true;
+		}
 		return false;
 	}
 	

@@ -4,34 +4,36 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.asterphoenix.kites.model.Order;
 import com.asterphoenix.kites.model.Order.OrderStatus;
 import com.asterphoenix.kites.model.OrderItem;
 import com.asterphoenix.kites.model.Product;
 import com.asterphoenix.kites.yasmin.R;
 import com.asterphoenix.kites.yasmin.api.CatalogAPI;
+import com.asterphoenix.kites.yasmin.cart.CartActivity;
 
 public class ProductDetailActivity extends Activity {
 	
@@ -62,6 +64,11 @@ public class ProductDetailActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.action_cart) {
+		}
+		if (item.getTitle().equals("cart")) {
+			Intent intent = new Intent(ProductDetailActivity.this, CartActivity.class);
+			startActivity(intent);
+			return true;
 		}
 		return false;
 	}
@@ -118,23 +125,26 @@ public class ProductDetailActivity extends Activity {
 		}
 	}
 	
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+	@SuppressLint("NewApi")
 	public void addToCart(View v) {
 		Order order = readOrder();
-		TextView tv = (TextView) findViewById(R.id.detailProductQTY);
 		OrderItem orderItem = new OrderItem();
+		TextView tv = (TextView) findViewById(R.id.detailProductQTY);
 		orderItem.setProductID(product.getProductID());
 		orderItem.setQty(Float.parseFloat(tv.getText().toString()));
+		orderItem.setProductName(product.getProductName());
+		orderItem.setProductPrice(product.getProductPrice());
+		orderItem.setImageBytes(product.getImageBytes());
 		order.setOrderStatus(OrderStatus.New);
 		if (null == order.getOrders()) {
-			Set<OrderItem> set = new HashSet<OrderItem>();
-			set.add(orderItem);
-			order.setOrders(set);
+			List<OrderItem> list = new ArrayList<>();
+			list.add(orderItem);
+			order.setOrders(list);
 		} else {
 			order.getOrders().add(orderItem);
 		}
 		float totalPrice = order.getTotalPrice() + (orderItem.getQty() * product.getProductPrice());
-		order.setTotalPrice(order.getTotalPrice() + totalPrice);
+		order.setTotalPrice(totalPrice);
 		if (writeOrder(order)) {
 			Toast.makeText(this, "Item added to cart", Toast.LENGTH_LONG).show();
 			this.navigateUpTo(this.getParentActivityIntent());
@@ -149,12 +159,11 @@ public class ProductDetailActivity extends Activity {
 			order = (Order) objectIn.readObject();
 			objectIn.close();
 			fileIn.close();
-			if (order.getOrderStatus().equals(OrderStatus.Completed)) {
+			if (!order.getOrderStatus().equals(OrderStatus.New)) {
 				this.deleteFile("order_file");
-				return new Order();
-			} else {
-				return order;				
+				order = new Order();
 			}
+			return order;				
 		} catch (Exception e) {
 			return new Order();
 		}
@@ -163,11 +172,10 @@ public class ProductDetailActivity extends Activity {
 	public Boolean writeOrder(Order order) {
 		
 		try {
+			this.deleteFile("order_file");
 			FileOutputStream fos = this.openFileOutput("order_file", Context.MODE_PRIVATE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			Log.i("yasmin", "vccc");
 			oos.writeObject(order);
-			Log.i("yasmin", "-----");
 			oos.close();
 			fos.close();
 			return true;

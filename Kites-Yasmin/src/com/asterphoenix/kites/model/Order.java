@@ -1,7 +1,7 @@
 package com.asterphoenix.kites.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 public class Order implements Serializable {
 
@@ -9,7 +9,7 @@ public class Order implements Serializable {
 	private long orderID;
 	private float totalPrice;
 	private OrderStatus orderStatus;
-	private Set<OrderItem> orders;
+	private List<OrderItem> orders;
 
 	public enum OrderStatus  {
 		New, Completed, Verified, Rejected
@@ -39,11 +39,11 @@ public class Order implements Serializable {
 		this.orderStatus = orderStatus;
 	}
 
-	public Set<OrderItem> getOrders() {
+	public List<OrderItem> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(Set<OrderItem> orders) {
+	public void setOrders(List<OrderItem> orders) {
 		this.orders = orders;
 	}
 }

@@ -2,8 +2,6 @@ package com.asterphoenix.kites.yasmin.cart;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -11,29 +9,23 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.app.ListActivity;
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.asterphoenix.kites.model.Order;
-import com.asterphoenix.kites.model.OrderItem;
-import com.asterphoenix.kites.model.Order.OrderStatus;
-import com.asterphoenix.kites.model.Product;
 import com.asterphoenix.kites.yasmin.R;
 import com.asterphoenix.kites.yasmin.api.CartAPI;
-import com.asterphoenix.kites.yasmin.api.CatalogAPI;
 import com.asterphoenix.kites.yasmin.catalog.CatalogActivity;
 
-public class ActivityCart extends ListActivity {
+public class CartActivity extends ListActivity {
 	
 	Order order;
-	List<Product> productList = new ArrayList<>();
+//	List<Product> productList = new ArrayList<>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,51 +33,31 @@ public class ActivityCart extends ListActivity {
 		setContentView(R.layout.activity_cart);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
+		
 		if (isOnline()) {
 			readOrderFile();
-			requestData();
 			updateDisplay();
 		} else {
 			Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
 		}
 	}
 	
-	protected void readOrderFile() {
-		try {
-			FileInputStream fileIn = this.openFileInput("order_file");
-			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-			order = (Order) objectIn.readObject();
-			objectIn.close();
-			fileIn.close();
-			if (order.getOrderStatus().equals(OrderStatus.Completed)) {
-				this.deleteFile("order_file");
-				order =  new Order();
-			} 
-		} catch (Exception e) {
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.action_exit) {
+			return true;
 		}
-		
-		
+		return false;
 	}
 	
-	protected void requestData() {
-		RestAdapter adapter = new RestAdapter.Builder().setEndpoint(CatalogActivity.ENDPOINT).build();
-		CatalogAPI api = adapter.create(CatalogAPI.class);
-		
-		for (OrderItem i : order.getOrders()) {
-			api.getProductsByID(String.valueOf(i.getProductID()), new Callback<Product>() {
-				
-				@Override
-				public void success(Product arg0, Response arg1) {
-					productList.add(arg0);
-				}
-				
-				@Override
-				public void failure(RetrofitError arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-		}
+	protected void checkout(View view) {
+		//TODO
 	}
 	
 	protected void sendData() {
@@ -97,19 +69,32 @@ public class ActivityCart extends ListActivity {
 			@Override
 			public void success(String arg0, Response arg1) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void failure(RetrofitError arg0) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 
 	}
 	
 	protected void updateDisplay() {
+		CartAdapter adapter = new CartAdapter(this, R.layout.item_cart, order.getOrders());
+		adapter.setOrder(order);
+		setListAdapter(adapter);
+	}
+	
+	protected void readOrderFile() {
+		try {
+			FileInputStream fileIn = this.openFileInput("order_file");
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+			order = (Order) objectIn.readObject();
+			objectIn.close();
+			fileIn.close();
+		} catch (Exception e) {
+		}
+		
+		
 	}
 	
 	protected boolean isOnline() {

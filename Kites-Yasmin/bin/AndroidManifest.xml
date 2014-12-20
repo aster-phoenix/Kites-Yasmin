@@ -37,6 +37,10 @@
             android:name="com.asterphoenix.kites.yasmin.catalog.ProductDetailActivity"
             android:label="@string/title_activity_detailProduct"
             android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" />
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.cart.CartActivity"
+            android:label="@string/title_activity_cart"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" />
     </application>
 
 </manifest>

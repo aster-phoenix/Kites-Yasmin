@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.asterphoenix.kites.model.Product;
 import com.asterphoenix.kites.yasmin.R;
 import com.asterphoenix.kites.yasmin.api.CatalogAPI;
+import com.asterphoenix.kites.yasmin.cart.CartActivity;
 
 public class ProductActivity extends ListActivity {
 
@@ -57,6 +58,11 @@ public class ProductActivity extends ListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getTitle().equals("cart")) {
+			Intent intent = new Intent(ProductActivity.this, CartActivity.class);
+			startActivity(intent);
+			return true;
+		}
 		return false;
 	}
 	
