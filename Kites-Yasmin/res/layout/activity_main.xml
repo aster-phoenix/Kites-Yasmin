@@ -5,25 +5,14 @@
     android:background="@drawable/franklin_background"
     android:keepScreenOn="true" >
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="onStartButtonClicked"
-        android:text="@string/text_start"
-        android:background="#fff"
-        android:alpha="0.7" />
-
     <ScrollView
         android:id="@+id/mainScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/startButton"
         android:layout_alignParentTop="true"
-        android:background="#fff"
-        android:alpha="0.5" >
+        android:alpha="0.7"
+        android:background="#fff" >
 
         <RelativeLayout
             android:id="@+id/mainRelative"
@@ -62,5 +51,28 @@
                 android:textSize="18sp" />
         </RelativeLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/checkOrder"
+        android:layout_marginBottom="1dp"
+        android:alpha="0.8"
+        android:background="#fff"
+        android:onClick="onStartButtonClicked"
+        android:text="@string/text_start" />
+
+    <Button
+        android:id="@+id/checkOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/text_check_order"
+        android:alpha="0.8"
+        android:onClick="onStatusButtonClicked"
+        android:background="#fff" />
 
 </RelativeLayout>

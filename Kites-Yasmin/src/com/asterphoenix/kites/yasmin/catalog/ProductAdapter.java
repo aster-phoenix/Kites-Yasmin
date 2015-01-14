@@ -2,10 +2,6 @@ package com.asterphoenix.kites.yasmin.catalog;
 
 import java.util.List;
 
-import com.asterphoenix.kites.model.Category;
-import com.asterphoenix.kites.model.Product;
-import com.asterphoenix.kites.yasmin.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -18,6 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.asterphoenix.kites.model.Product;
+import com.asterphoenix.kites.yasmin.R;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 	

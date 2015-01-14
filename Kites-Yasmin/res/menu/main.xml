@@ -3,11 +3,6 @@
     tools:context="com.asterphoenix.kites.yasmin.MainActivity" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-    <item
         android:id="@+id/action_exit"
         android:orderInCategory="100"
         android:showAsAction="never"
@@ -17,6 +12,13 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/cart_icon"
-        android:title="cart" />
+        android:title="@string/title_activity_cart" />
+    
+    <item android:id="@+id/search"
+          android:title="@string/search_title"
+          android:icon="@drawable/ic_action_search"
+          android:showAsAction="collapseActionView|ifRoom"
+          android:actionViewClass="android.widget.SearchView" />
+    
 
 </menu>

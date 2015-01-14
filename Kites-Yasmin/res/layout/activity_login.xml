@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/franklin_background" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/loginLogin"
+        android:alpha="0.7"
+        android:background="#fff" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/text_login1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/loginUsernameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView1"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/login_username"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <EditText
+                android:id="@+id/loginUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/loginUsernameLabel"
+                android:ems="10"
+                android:hint="@string/login_username_hint" >
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/loginPasswordLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/loginUsername"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/login_password"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <EditText
+                android:id="@+id/loginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/loginPasswordLabel"
+                android:ems="10"
+                android:hint="@string/login_password_hint"
+                android:inputType="textPassword" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/loginLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/loginNewAccout"
+        android:layout_marginBottom="1dp"
+        android:alpha="0.8"
+        android:background="#fff"
+        android:onClick="login"
+        android:text="@string/text_login2" />
+
+    <Button
+        android:id="@+id/loginNewAccout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.8"
+        android:background="#fff"
+        android:onClick="createAccount"
+        android:text="@string/text_create_account" />
+
+</RelativeLayout>

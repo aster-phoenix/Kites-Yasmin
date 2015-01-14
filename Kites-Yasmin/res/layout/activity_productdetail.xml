@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/eee"
         android:layout_alignParentTop="true"
-        android:alpha="0.5"
+        android:alpha="0.7"
         android:background="#fff" >
 
         <RelativeLayout
@@ -68,7 +68,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/loginUsernameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -83,12 +83,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView3"
+                android:layout_below="@+id/loginUsernameLabel"
                 android:text="@string/product_brand_placeholder"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/loginPasswordLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView4"
+                android:layout_below="@+id/loginPasswordLabel"
                 android:text="@string/product_price_placeholder"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </RelativeLayout>
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/addToCart"
         android:layout_centerHorizontal="true"
-        android:alpha="0.5"
+        android:alpha="0.7"
         android:background="#fff"
         android:paddingLeft="20dp" >
 
@@ -133,15 +133,15 @@
             android:id="@+id/detailProductQTY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button2"
-            android:layout_alignBottom="@+id/button2"
-            android:layout_toLeftOf="@+id/button2"
-            android:text="1.0"
+            android:layout_alignBaseline="@+id/loginNewAccout"
+            android:layout_alignBottom="@+id/loginNewAccout"
+            android:layout_toLeftOf="@+id/loginNewAccout"
+            android:text="@string/text_one"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#950" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/loginLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView5"
@@ -149,11 +149,11 @@
             android:alpha="0.7"
             android:background="#fff"
             android:onClick="QTYMinus"
-            android:text="-"
+            android:text="@string/text_minus"
             android:textSize="34sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/loginNewAccout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -161,17 +161,17 @@
             android:alpha="0.7"
             android:background="#fff"
             android:onClick="QTYPlus"
-            android:text="+"
+            android:text="@string/text_plus"
             android:textSize="34sp" />
 
         <TextView
             android:id="@+id/detailTotalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button1"
-            android:layout_alignBottom="@+id/button1"
+            android:layout_alignBaseline="@+id/loginLogin"
+            android:layout_alignBottom="@+id/loginLogin"
             android:layout_alignParentLeft="true"
-            android:text="$$$"
+            android:text="@string/text_hash"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#900" />
     </RelativeLayout>
@@ -182,7 +182,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:alpha="0.7"
+        android:alpha="0.8"
         android:background="#fff"
         android:onClick="addToCart"
         android:text="@string/text_add_to_cart" />

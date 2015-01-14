@@ -27,21 +27,17 @@ public class CartAdapter extends ArrayAdapter<OrderItem> {
 	private Context context;
 	private List<OrderItem> orderItems;
 	private Order order;
+	private TextView totalLabel;
 	
 	public CartAdapter(Context context, int resource, List<OrderItem> objects) {
 		super(context, resource, objects);
 		this.context = context;
 		this.orderItems = objects;
-		Log.i("xxxxxxxxxx", "1");
 	}
 	
 	
 	public void setOrder(Order order) {
 		this.order = order;
-		Log.i("xxxxxxxxxx", "2");
-		for (OrderItem o : orderItems) {
-			Log.i("xxxxxxxxxx", o.getProductName());
-		}
 	}
 	
 	@Override
@@ -68,6 +64,9 @@ public class CartAdapter extends ArrayAdapter<OrderItem> {
 			}
 		}
 		
+		order = calculateTotal(order);
+		totalLabel.setText("" + order.getTotalPrice());
+		
 		Button b = (Button) view.findViewById(R.id.cartPlusBtn);
 		b.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -89,6 +88,8 @@ public class CartAdapter extends ArrayAdapter<OrderItem> {
 					}
 				}
 				order.setOrders(orderItems);
+				order = calculateTotal(order);
+				totalLabel.setText("" + order.getTotalPrice());
 				writeOrderFile(order);
 			}
 		});
@@ -115,6 +116,8 @@ public class CartAdapter extends ArrayAdapter<OrderItem> {
 						}
 					}
 					order.setOrders(orderItems);
+					order = calculateTotal(order);
+					totalLabel.setText("" + order.getTotalPrice());
 					writeOrderFile(order);
 				}
 			}
@@ -133,6 +136,8 @@ public class CartAdapter extends ArrayAdapter<OrderItem> {
 					}
 				}
 				order.setOrders(orderItems);
+				order = calculateTotal(order);
+				totalLabel.setText("" + order.getTotalPrice());
 				writeOrderFile(order);
 				notifyDataSetChanged();
 			}
@@ -151,6 +156,19 @@ public class CartAdapter extends ArrayAdapter<OrderItem> {
 			fos.close();
 		} catch (Exception e) {
 		}
+	}
+	
+	public Order calculateTotal(Order order) {
+		float total = 0;
+		for (OrderItem i : order.getOrders()) {
+			total += (i.getProductPrice());
+		}
+		order.setTotalPrice(total);
+		return order;
+	}
+	
+	public void setTotalLabel(TextView tv) {
+		totalLabel = tv;
 	}
 
 }

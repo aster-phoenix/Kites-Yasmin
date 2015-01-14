@@ -17,15 +17,16 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="invisible" />
-    
+
     <RelativeLayout
         android:id="@+id/eeee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/checkout"
         android:layout_centerHorizontal="true"
-        android:alpha="0.6"
+        android:alpha="0.7"
         android:background="#fff"
+        android:paddingTop="8dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp" >
 
@@ -44,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="$$$"
+            android:text="@string/text_hash"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#900" />
     </RelativeLayout>
@@ -55,9 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:alpha="0.7"
+        android:alpha="0.8"
         android:background="#fff"
-        android:text="@string/text_checkout"
-        android:onClick="checkout" />
+        android:onClick="checkout"
+        android:text="@string/text_checkout" />
 
 </RelativeLayout>

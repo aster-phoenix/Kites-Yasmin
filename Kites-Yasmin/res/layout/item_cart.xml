@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0.5"
+    android:alpha="0.7"
     android:background="#fff" >
 
     <ImageView
@@ -32,7 +32,7 @@
         android:layout_alignLeft="@+id/cartProductName"
         android:layout_below="@+id/cartProductName"
         android:paddingLeft="20dp"
-        android:text="Quantity"
+        android:text="@string/text_qty"
         android:textColor="#950" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_toRightOf="@+id/cartProductQTYLabel"
         android:layout_marginLeft="5dp"
         android:textColor="#900"
-        android:text="###" />
+        android:text="@string/text_hash" />
 
     <TextView
         android:id="@+id/cartProductPriceLabel"
@@ -52,7 +52,7 @@
         android:layout_alignLeft="@+id/cartProductQTYLabel"
         android:layout_below="@+id/cartProductQTYLabel"
         android:paddingLeft="20dp"
-        android:text="Price"
+        android:text="@string/text_price"
         android:textColor="#950" />
 
     <TextView
@@ -62,7 +62,7 @@
         android:layout_below="@+id/cartProductQTY"
         android:layout_alignLeft="@+id/cartProductQTY"
         android:textColor="#900"
-        android:text="###" />
+        android:text="@string/text_hash" />
 
     <Button
         android:id="@+id/cartPlusBtn"
@@ -71,21 +71,23 @@
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:alpha="0.7"
+        android:alpha="0.8"
         android:background="#aaa"
-        android:text="+"
+        android:text="@string/text_plus"
         android:textSize="24sp" />
 
     <Button
         android:id="@+id/cartMinusBtn"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="28dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/cartPlusBtn"
-        android:alpha="0.7"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:alpha="0.8"
         android:background="#aaa"
-        android:text="-"
+        android:text="@string/text_minus"
         android:textSize="24sp" />
 
     <Button
@@ -95,10 +97,10 @@
         android:layout_height="30dp"
         android:layout_alignBottom="@+id/cartProductImage"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/button2"
-        android:alpha="0.7"
-        android:background="#f00"
-        android:text="X"
+        android:layout_below="@+id/cartMinusBtn"
+        android:alpha="0.8"
+        android:background="#f33"
+        android:text="@string/text_x"
         android:textSize="20sp" />
 
 </RelativeLayout>

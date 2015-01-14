@@ -2,29 +2,28 @@ package com.asterphoenix.kites.yasmin.cart;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asterphoenix.kites.model.Order;
+import com.asterphoenix.kites.model.Order.OrderStatus;
+import com.asterphoenix.kites.model.OrderItem;
 import com.asterphoenix.kites.yasmin.R;
-import com.asterphoenix.kites.yasmin.api.CartAPI;
-import com.asterphoenix.kites.yasmin.catalog.CatalogActivity;
 
 public class CartActivity extends ListActivity {
 	
 	Order order;
+	TextView totalLabel;
 //	List<Product> productList = new ArrayList<>();
 	
 	@Override
@@ -33,6 +32,7 @@ public class CartActivity extends ListActivity {
 		setContentView(R.layout.activity_cart);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
+		totalLabel = (TextView) findViewById(R.id.cartTotalPrice);
 		
 		if (isOnline()) {
 			readOrderFile();
@@ -42,48 +42,19 @@ public class CartActivity extends ListActivity {
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_exit) {
-			return true;
-		}
-		return false;
-	}
-	
-	protected void checkout(View view) {
-		//TODO
-	}
-	
-	protected void sendData() {
-
-		RestAdapter adapter = new RestAdapter.Builder().setEndpoint(CatalogActivity.ENDPOINT).build();
-		CartAPI api = adapter.create(CartAPI.class);
-		api.addOrder(order, new Callback<String>() {
-			
-			@Override
-			public void success(String arg0, Response arg1) {
-				// TODO Auto-generated method stub
-			}
-			
-			@Override
-			public void failure(RetrofitError arg0) {
-			}
-		});
-
+	public void checkout(View v) {
+		Intent intent = new Intent(CartActivity.this, LoginActivity.class);
+		startActivity(intent);
 	}
 	
 	protected void updateDisplay() {
 		CartAdapter adapter = new CartAdapter(this, R.layout.item_cart, order.getOrders());
 		adapter.setOrder(order);
+		adapter.setTotalLabel(totalLabel);
 		setListAdapter(adapter);
 	}
 	
+	@SuppressLint("NewApi")
 	protected void readOrderFile() {
 		try {
 			FileInputStream fileIn = this.openFileInput("order_file");
@@ -92,9 +63,14 @@ public class CartActivity extends ListActivity {
 			objectIn.close();
 			fileIn.close();
 		} catch (Exception e) {
+			Toast.makeText(this, "Cart is empty", Toast.LENGTH_LONG).show();
+			navigateUpTo(getParentActivityIntent());
 		}
-		
-		
+		if (null == order || order.getOrderStatus() != OrderStatus.New ) {
+			order = new Order();
+			order.setOrders(new ArrayList<OrderItem>());
+			order.setOrderStatus(OrderStatus.New);
+		}
 	}
 	
 	protected boolean isOnline() {

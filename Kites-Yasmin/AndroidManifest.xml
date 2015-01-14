@@ -16,6 +16,10 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value="com.asterphoenix.kites.yasmin.catalog.SearchResultsActivity" />
+
         <activity
             android:name="com.asterphoenix.kites.yasmin.MainActivity"
             android:label="@string/title_activity_main" >
@@ -28,19 +32,63 @@
         <activity
             android:name="com.asterphoenix.kites.yasmin.catalog.CatalogActivity"
             android:label="@string/title_activity_catalog"
-            android:parentActivityName="com.asterphoenix.kites.yasmin.MainActivity" />
-        <activity 
+            android:parentActivityName="com.asterphoenix.kites.yasmin.MainActivity" >
+        </activity>
+        <activity
             android:name="com.asterphoenix.kites.yasmin.catalog.ProductActivity"
             android:label="@string/title_activity_product"
-            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" />
+            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" >
+        </activity>
         <activity
             android:name="com.asterphoenix.kites.yasmin.catalog.ProductDetailActivity"
             android:label="@string/title_activity_detailProduct"
-            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" />
+            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" >
+        </activity>
         <activity
             android:name="com.asterphoenix.kites.yasmin.cart.CartActivity"
             android:label="@string/title_activity_cart"
-            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" />
+            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" >
+        </activity>
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.cart.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.cart.CartActivity" />
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.cart.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.cart.LoginActivity" />
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.cart.PaymentActivity"
+            android:label="@string/title_activity_payment"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.cart.LoginActivity" />
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.cart.AddressConfirmationActivity"
+            android:label="@string/title_activity_address"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.cart.PaymentActivity" />
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.cart.ProcessOrderActivity"
+            android:label="@string/title_activity_address"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.cart.CartActivity" />
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.catalog.OrderStatusActivity"
+            android:label="@string/title_activity_status"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.cart.CartActivity" />
+        <activity
+            android:name="com.asterphoenix.kites.yasmin.catalog.SearchResultsActivity"
+            android:label="@string/title_activity_search"
+            android:launchMode="singleTop"
+            android:parentActivityName="com.asterphoenix.kites.yasmin.catalog.CatalogActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
     </application>
 
 </manifest>

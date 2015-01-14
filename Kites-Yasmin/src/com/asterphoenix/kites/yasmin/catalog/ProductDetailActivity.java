@@ -13,6 +13,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -24,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +60,9 @@ public class ProductDetailActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 		return true;
 	}
 
@@ -65,7 +70,7 @@ public class ProductDetailActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.action_cart) {
 		}
-		if (item.getTitle().equals("cart")) {
+		if (item.getItemId() == R.id.action_cart) {
 			Intent intent = new Intent(ProductDetailActivity.this, CartActivity.class);
 			startActivity(intent);
 			return true;
@@ -141,7 +146,16 @@ public class ProductDetailActivity extends Activity {
 			list.add(orderItem);
 			order.setOrders(list);
 		} else {
-			order.getOrders().add(orderItem);
+			boolean exist = false;
+			for (OrderItem i : order.getOrders()) {
+				if (i.getProductID() == orderItem.getProductID()) {
+					i.setQty(i.getQty() + orderItem.getQty());
+					exist = true;
+				}
+			}
+			if (!exist) {
+				order.getOrders().add(orderItem);
+			}
 		}
 		float totalPrice = order.getTotalPrice() + (orderItem.getQty() * product.getProductPrice());
 		order.setTotalPrice(totalPrice);
@@ -198,10 +212,14 @@ public class ProductDetailActivity extends Activity {
 	public void QTYPlus(View v) {
 		TextView tv = (TextView) findViewById(R.id.detailProductQTY);
 		float qty = Float.parseFloat(tv.getText().toString());
-		tv.setText("" + ++qty);
-		float total = product.getProductPrice() * qty;
-		tv = (TextView) findViewById(R.id.detailTotalPrice);
-		tv.setText("" + total + " $");
+		if (qty < (product.getProductQTY() * 0.9)) {
+			tv.setText("" + ++qty);
+			float total = product.getProductPrice() * qty;
+			tv = (TextView) findViewById(R.id.detailTotalPrice);
+			tv.setText("" + total + " $");
+		} else {
+			Toast.makeText(this, "Reached maximum quantity", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 }

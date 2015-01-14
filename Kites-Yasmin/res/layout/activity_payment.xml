@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/payment_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/franklin_background" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="314dp" >
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:background="#fff" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/text_choose_payment"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#950" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentCashOnDeliver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="1dp"
+            android:alpha="0.8"
+            android:background="#fff"
+            android:clickable="true"
+            android:onClick="onDelivery" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_cash_on_delivery"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/text_cash_on_delivery"
+                android:src="@drawable/delivery_icon" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentCashOnPickup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/paymentCashOnDeliver"
+            android:layout_marginTop="1dp"
+            android:alpha="0.8"
+            android:background="#fff"
+            android:clickable="true"
+            android:onClick="onPickup" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_cash_on_pickup"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/text_cash_on_pickup"
+                android:src="@drawable/dollar_sack_icon" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/soon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/paymentCashOnPickup"
+            android:layout_marginTop="1dp"
+            android:alpha="0.7"
+            android:background="#fff" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/text_soon"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#950" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/soon"
+            android:layout_marginTop="1dp"
+            android:alpha="0.8"
+            android:background="#fff"
+            android:clickable="true"
+            android:onClick="onSoon" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_gwallet"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/text_gwallet"
+                android:src="@drawable/google_wallet" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentPaypal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/paymentGoogle"
+            android:layout_marginTop="1dp"
+            android:alpha="0.8"
+            android:background="#fff"
+            android:clickable="true"
+            android:onClick="onSoon" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_paypal"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/text_paypal"
+                android:src="@drawable/paypal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentVisa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/paymentPaypal"
+            android:layout_marginTop="1dp"
+            android:alpha="0.8"
+            android:background="#fff"
+            android:clickable="true"
+            android:onClick="onSoon" >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_visa"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/text_visa"
+                android:src="@drawable/visa" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentMaster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/paymentVisa"
+            android:layout_marginTop="1dp"
+            android:alpha="0.8"
+            android:background="#fff"
+            android:clickable="true"
+            android:onClick="onSoon" >
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_master"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/text_master"
+                android:src="@drawable/mastercard" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentBitcoin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/paymentMaster"
+            android:layout_marginTop="1dp"
+            android:alpha="0.8"
+            android:background="#fff"
+            android:clickable="true"
+            android:onClick="onSoon" >
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_bitcoin"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#950" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/text_bitcoin"
+                android:src="@drawable/bitcoin" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>
